@@ -1,0 +1,144 @@
+/* ===== 知识库可视化页 ===== */
+.kv-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.kv-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: #001529;
+  height: 64px;
+}
+
+.kv-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  background: #f5f5f5;
+}
+
+.kv-loading {
+  display: flex;
+  justify-content: center;
+  padding-top: 30vh;
+}
+
+.kv-empty {
+  margin-top: 20vh;
+}
+
+.kv-stats {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.kv-stat-card {
+  min-width: 160px;
+}
+
+.kv-scatter-card {
+  padding-top: 4px;
+}
+
+/* 图例：可点击过滤 */
+.kv-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.kv-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kv-legend-item.dim {
+  opacity: 0.35;
+}
+
+.kv-legend-item i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 图例上的删除按钮：默认淡显，悬停变红提示可删 */
+.kv-legend-del {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2px;
+  padding: 0 2px;
+  color: #bbb;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.kv-legend-del:hover {
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.1);
+}
+
+.kv-scatter {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  height: auto;
+  display: block;
+}
+
+.kv-dot {
+  cursor: pointer;
+  transition: fill-opacity 0.2s, r 0.15s;
+}
+
+.kv-dot:hover {
+  fill-opacity: 1;
+  r: 13;
+}
+
+.kv-cluster-label {
+  font-size: 13px;
+  fill: #666;
+  text-anchor: middle;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: #fafafa;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+/* ===== 抽屉详情 ===== */
+.kv-drawer-meta {
+  margin-bottom: 8px;
+}
+
+.kv-drawer-id {
+  color: #999;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.kv-drawer-content {
+  background: #f6f8fa;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 70vh;
+  overflow-y: auto;
+}

@@ -1,0 +1,404 @@
+/* ===== 整体布局 ===== */
+.app-layout {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 右侧主区域：高度受限的 flex 容器，Header/Footer 固定，Content 中间滚动 */
+.app-main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ===== 会话历史侧边栏 ===== */
+.app-sider {
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid #f0f0f0;
+}
+
+/* antd Sider 会把 children 包在 .ant-layout-sider-children 里，需让其成为受限 flex 容器 */
+.app-sider .ant-layout-sider-children {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sider-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 8px;
+}
+
+.sider-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 12px;
+}
+
+.sider-spin {
+  display: block;
+  margin: 40px auto;
+}
+
+.sider-empty {
+  margin-top: 40px;
+}
+
+.thread-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.thread-item:hover {
+  background: #f5f5f5;
+}
+
+.thread-item.active {
+  background: #e6f4ff;
+}
+
+.thread-item-icon {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.thread-item.active .thread-item-icon {
+  color: #1677ff;
+}
+
+.thread-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.thread-item-preview {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thread-item-meta {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+
+.thread-item-del {
+  visibility: hidden;
+  flex-shrink: 0;
+}
+
+.thread-item:hover .thread-item-del {
+  visibility: visible;
+}
+
+.app-loading {
+  display: flex;
+  justify-content: center;
+  padding-top: 30vh;
+}
+
+.app-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #001529;
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.app-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 16px;
+  background: #f5f5f5;
+}
+
+.app-empty {
+  margin-top: 20vh;
+}
+
+.app-footer {
+  flex-shrink: 0;
+  padding: 12px 24px 20px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.app-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ===== 消息行 ===== */
+.msg-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.msg-user {
+  flex-direction: row-reverse;
+}
+
+.msg-avatar {
+  flex-shrink: 0;
+}
+
+.msg-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  max-width: 78%;
+}
+
+.msg-user .msg-body {
+  align-items: flex-end;
+}
+
+.msg-assistant .msg-body {
+  align-items: flex-start;
+}
+
+/* ===== 气泡 ===== */
+.msg-content {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: break-word;
+}
+
+.msg-bubble-user {
+  background: #1677ff;
+  color: #fff;
+  border-top-right-radius: 2px;
+}
+
+.msg-bubble-ai {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-top-left-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* markdown 内容微调 */
+.msg-content p {
+  margin: 0 0 8px;
+}
+
+.msg-content p:last-child {
+  margin-bottom: 0;
+}
+
+.msg-content pre {
+  background: #f6f8fa;
+  border-radius: 6px;
+  padding: 10px;
+  overflow-x: auto;
+  font-size: 13px;
+}
+
+.msg-content code {
+  background: #f6f8fa;
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-size: 13px;
+}
+
+.msg-content pre code {
+  padding: 0;
+  background: none;
+}
+
+.msg-content table {
+  border-collapse: collapse;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.msg-content th,
+.msg-content td {
+  border: 1px solid #e5e5e5;
+  padding: 4px 10px;
+}
+
+/* 表头默认居中，会与左对齐的内容错开 */
+.msg-content th {
+  background: #fafafa;
+  font-weight: 600;
+  text-align: left;
+}
+
+.msg-placeholder {
+  color: #bbb;
+}
+
+/* ===== 流式光标 ===== */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #1677ff;
+  animation: blink 0.9s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ===== 工具调用卡片 ===== */
+.tool-card {
+  width: 100%;
+  background: #fafafa;
+  border-color: #e8e8e8;
+}
+
+.tool-card .ant-card-body {
+  padding: 8px 12px;
+}
+
+.tool-json {
+  margin: 0;
+  font-size: 12px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tool-result {
+  margin: 0;
+  font-size: 12px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+/* ===== 错误提示 ===== */
+.msg-error {
+  width: 100%;
+}
+
+/* ===== 等待用户回答（ask_user 中断） ===== */
+.msg-question {
+  width: 100%;
+}
+
+.footer-question {
+  margin-bottom: 8px;
+}
+
+/* ===== 附件区（application-driven：用户上传，经 MCP resource 读取） ===== */
+.footer-dropzone {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.footer-dropzone-active {
+  border-color: #1677ff;
+  background: #f0f7ff;
+}
+
+.footer-dropzone-hint {
+  color: #999;
+  font-size: 12px;
+}
+
+.footer-attachment {
+  margin: 0;
+}
+
+/* 附件区里的图片缩略图（小方块，跟随文字基线） */
+.footer-attachment-thumb {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+
+/* 消息里的图片附件（用户消息专用，位于文字气泡上方） */
+.msg-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.msg-image {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* 拖拽上传：全屏提示层。
+   pointer-events: none 很关键——遮罩本身不参与鼠标事件，既不会拦截 drop，
+   也不会因它出现在光标下而触发额外的 dragenter/dragleave 打乱计数。 */
+.drop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(22, 119, 255, 0.06);
+  border: 2px dashed #1677ff;
+  pointer-events: none;
+}
+
+.drop-overlay-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 32px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  color: #1677ff;
+  font-size: 15px;
+}
+
+.drop-overlay-icon {
+  font-size: 28px;
+}
